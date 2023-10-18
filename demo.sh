@@ -1,8 +1,10 @@
 #!/bin/bash
 
 COMMAND=$1
+
 ROBOT=$2
-BASE=/home/o3de/github/ROSConDemo
+
+BASE=$(cd `dirname $0` && pwd)
 
 if [ "$COMMAND" = "" ]
 then
@@ -47,14 +49,11 @@ then
     exit 0
 fi
 
-echo Command $COMMAND
-echo Robot $ROBOT
-
 source /opt/ros/humble/setup.bash
 
-source $BASE/kraken_nav/install/setup.bash
-
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+source $BASE/kraken_nav/install/setup.bash
 
 if [ "$COMMAND" = "launch" ]
 then
@@ -178,4 +177,3 @@ then
 else
     echo "Invalid Command $COMMAND"
 fi
-
